@@ -1,4 +1,4 @@
-# AMACC NAGA School Online Clearance System
+# Clearance System
 
 # Overview
 The School Online Clearance System is a web-based application that simplifies the clearance process for students, faculty, and administrative staff.
