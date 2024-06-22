@@ -4,7 +4,11 @@ import SideNav from '../components/nav/SideNav'
 import Navbar from '../components/nav/Navbar'
 import Profile from '../components/cards/Profile'
 import ActiveClearanceTable from '../components/tables/ActiveClearanceTable'
-
+import ClearanceList from '../pages/ClearanceList/ClearanceList'
+import ClearanceListTable from '../components/tables/ClearanceListTable'
+import Setting from '../pages/Settings/Setting'
+import ChangeEmail from '../pages/Settings/forms/ChangeEmail'
+import ChangePass from '../pages/Settings/forms/ChangePass'
 
 export {
     MainLayout,
@@ -12,5 +16,10 @@ export {
     SideNav,
     Navbar,
     Profile,
-    ActiveClearanceTable
+    ActiveClearanceTable,
+    ClearanceList,
+    ClearanceListTable,
+    Setting,
+    ChangeEmail,
+    ChangePass
 }

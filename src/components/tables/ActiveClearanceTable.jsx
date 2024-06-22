@@ -3,11 +3,11 @@ import { Table } from "flowbite-react";
 
 function ActiveClearanceTable() {
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto border-2 rounded-b-md">
       <Table>
         <Table.Head>
           <Table.HeadCell>Designee</Table.HeadCell>
-          <Table.HeadCell>Office</Table.HeadCell>
+          <Table.HeadCell>Department</Table.HeadCell>
           <Table.HeadCell>Status</Table.HeadCell>
           <Table.HeadCell>Deficeincy</Table.HeadCell>
           <Table.HeadCell>Action</Table.HeadCell>

@@ -16,7 +16,7 @@ function MainLayout() {
               isShowSideNav={isShowSideNav}
               setIsShowSideNav={setIsShowSideNav}
             />
-            <div className='p-5 max-[1100px]:mt-20'>
+            <div className='p-5 mt-20'>
               <Outlet/>
             </div>
         </section>

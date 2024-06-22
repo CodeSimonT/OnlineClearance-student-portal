@@ -40,61 +40,55 @@ function SideNav({isShowSideNav, setIsShowSideNav}) {
         };
     })
 
-  return (
-    <div ref={navRef} className={`h-full w-56 flex flex-col border-r overflow-auto max-[1100px]:fixed max-[1100px]:bg-white max-[1100px]:z-20 max-[1100px]:${isShowSideNav ? '':'-translate-x-60'} transition-all duration-300 min-h-[400px] overflow-auto`}>
-        <Profile/>
-        <div className='w-full flex flex-col items-start p-2 h-full'>
-            <NavLink 
-                to='/'
-                className={({isActive}) => isActive ? "inline-flex items-center bg-red-200 text-red-500 text-sm font-medium px-2.5 py-3 rounded-sm w-full":"inline-flex items-center hover:bg-gray-400 hover:bg-opacity-10 text-sm font-medium px-2.5 py-3 rounded-sm w-full text-gray-500"}
-            >
-                <span className='me-5'>
-                    <LiaClipboardListSolid/>
-                </span>
-                Active Clearance
-            </NavLink>
-            {/* <NavLink 
-                to='/list-of-deficiency'
-                className={({isActive}) => isActive ? "inline-flex items-center bg-red-200 text-red-500 text-sm font-medium px-2.5 py-3 rounded-sm w-full":"inline-flex items-center hover:bg-gray-400 hover:bg-opacity-10 text-sm font-medium px-2.5 py-3 rounded-sm w-full text-gray-500"}
-            >
-                <span className='me-5'>
-                    <MdPlaylistRemove/>
-                </span>
-                List of Deficeincy
-            </NavLink> */}
-            <NavLink 
-                to='/clearance-list'
-                className={({isActive}) => isActive ? "inline-flex items-center bg-red-200 text-red-500 text-sm font-medium px-2.5 py-3 rounded-sm w-full":"inline-flex items-center hover:bg-gray-400 hover:bg-opacity-10 text-sm font-medium px-2.5 py-3 rounded-sm w-full text-gray-500"}
-            >
-                <span className='me-5'>
-                    <LiaClipboardListSolid/>
-                </span>
-                Clearance List
-            </NavLink>
-            <NavLink 
-                to='/settings'
-                className={({isActive}) => isActive ? "inline-flex items-center bg-red-200 text-red-500 text-sm font-medium px-2.5 py-3 rounded-sm w-full":"inline-flex items-center hover:bg-gray-400 hover:bg-opacity-10 text-sm font-medium px-2.5 py-3 rounded-sm w-full text-gray-500"}
-            >
-                <span className='me-5'>
-                    <IoIosSettings/>
-                </span>
-                Settings
-            </NavLink>
-            <button className='inline-flex items-center bg-opacity-50 hover:bg-gray-400 hover:bg-opacity-10 text-sm font-medium px-2.5 py-3 rounded-sm w-full text-gray-500'>
-                <span className='me-5'>
-                    <ImExit/>
-                </span>
-                Logout
-            </button>
+    return (
+        <div ref={navRef} className={`h-full w-56 flex flex-col border-r overflow-auto max-[1100px]:fixed max-[1100px]:bg-white max-[1100px]:z-20 max-[1100px]:${isShowSideNav ? '':'-translate-x-60'} transition-all duration-300 min-h-[400px] overflow-auto`}>
+            <Profile/>
+            <div className='w-full flex flex-col items-start p-2 h-full'>
+                <NavLink 
+                    to='/'
+                    className={({isActive}) => isActive ? "inline-flex items-center bg-red-200 text-red-500 text-sm font-medium px-2.5 py-3 rounded-sm w-full":"inline-flex items-center hover:bg-gray-400 hover:bg-opacity-10 text-sm font-medium px-2.5 py-3 rounded-sm w-full text-gray-500"}
+                    onClick={handleCloseNav}
+                >
+                    <span className='me-5'>
+                        <LiaClipboardListSolid/>
+                    </span>
+                    Active Clearance
+                </NavLink>
+                <NavLink 
+                    to='/clearance-list'
+                    className={({isActive}) => isActive ? "inline-flex items-center bg-red-200 text-red-500 text-sm font-medium px-2.5 py-3 rounded-sm w-full":"inline-flex items-center hover:bg-gray-400 hover:bg-opacity-10 text-sm font-medium px-2.5 py-3 rounded-sm w-full text-gray-500"}
+                    onClick={handleCloseNav}
+                >
+                    <span className='me-5'>
+                        <LiaClipboardListSolid/>
+                    </span>
+                    Clearance List
+                </NavLink>
+                <NavLink 
+                    to='/settings'
+                    className={({isActive}) => isActive ? "inline-flex items-center bg-red-200 text-red-500 text-sm font-medium px-2.5 py-3 rounded-sm w-full":"inline-flex items-center hover:bg-gray-400 hover:bg-opacity-10 text-sm font-medium px-2.5 py-3 rounded-sm w-full text-gray-500"}
+                    onClick={handleCloseNav}
+                >
+                    <span className='me-5'>
+                        <IoIosSettings/>
+                    </span>
+                    Settings
+                </NavLink>
+                <button className='inline-flex items-center bg-opacity-50 hover:bg-gray-400 hover:bg-opacity-10 text-sm font-medium px-2.5 py-3 rounded-sm w-full text-gray-500'>
+                    <span className='me-5'>
+                        <ImExit/>
+                    </span>
+                    Logout
+                </button>
 
+            </div>
+            <div className='text-sm w-full p-2'>
+                <p className='text-sm text-gray-400'>
+                    2023 - {handleGetCurrentYear()} &copy; <span className='font-medium'>Jay Ar Nava, AMACC Naga</span>
+                </p>
+            </div>
         </div>
-        <div className='text-sm w-full p-2'>
-            <p className='text-sm text-gray-400'>
-                2023 - {handleGetCurrentYear()} &copy; <span className='font-medium'>Jay Ar Nava, AMACC Naga</span>
-            </p>
-        </div>
-    </div>
-  )
+    )
 }
 
 export default SideNav
