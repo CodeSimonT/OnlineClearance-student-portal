@@ -41,7 +41,10 @@ function SideNav({isShowSideNav, setIsShowSideNav}) {
     })
 
     return (
-        <div ref={navRef} className={`h-full w-56 flex flex-col border-r overflow-auto max-[1100px]:fixed max-[1100px]:bg-white max-[1100px]:z-20 max-[1100px]:${isShowSideNav ? '':'-translate-x-60'} transition-all duration-300 min-h-[400px] overflow-auto`}>
+        <div 
+            ref={navRef} 
+            className={`h-full w-56 flex flex-col border-r overflow-auto max-xl:fixed max-xl:bg-white max-xl:z-20 max-xl:${isShowSideNav ? '':'-translate-x-60'} transition-all duration-300 min-h-[400px]`}
+        >
             <Profile/>
             <div className='w-full flex flex-col items-start p-2 h-full'>
                 <NavLink 

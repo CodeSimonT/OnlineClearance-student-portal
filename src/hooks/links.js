@@ -9,6 +9,9 @@ import ClearanceListTable from '../components/tables/ClearanceListTable'
 import Setting from '../pages/Settings/Setting'
 import ChangeEmail from '../pages/Settings/forms/ChangeEmail'
 import ChangePass from '../pages/Settings/forms/ChangePass'
+import LogIn from '../pages/forms/LogIn'
+import LoginInputs from '../pages/forms/LoginInputs'
+import ForgotPassword from '../pages/forms/ForgotPassword'
 
 export {
     MainLayout,
@@ -21,5 +24,8 @@ export {
     ClearanceListTable,
     Setting,
     ChangeEmail,
-    ChangePass
+    ChangePass,
+    LogIn, 
+    LoginInputs,
+    ForgotPassword
 }

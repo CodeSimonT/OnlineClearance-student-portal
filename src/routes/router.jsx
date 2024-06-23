@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { ChangeEmail, ChangePass, ClearanceList, HomePage, MainLayout, Setting } from "../hooks/links";
+import { ChangeEmail, ChangePass, ClearanceList, ForgotPassword, HomePage, LogIn, LoginInputs, MainLayout, Setting } from "../hooks/links";
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +27,20 @@ export const router = createBrowserRouter([
                         element:<ChangePass/>
                     },
                 ]
+            }
+        ]
+    },
+    {
+        path:'/form',
+        element:<LogIn/>,
+        children:[
+            {
+                path:'login',
+                element:<LoginInputs/>
+            },
+            {
+                path:'forgotpassword',
+                element:<ForgotPassword/>
             }
         ]
     }
