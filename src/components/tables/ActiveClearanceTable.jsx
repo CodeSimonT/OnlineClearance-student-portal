@@ -9,7 +9,7 @@ function ActiveClearanceTable() {
           <Table.HeadCell>Designee</Table.HeadCell>
           <Table.HeadCell>Department</Table.HeadCell>
           <Table.HeadCell>Status</Table.HeadCell>
-          <Table.HeadCell>Deficeincy</Table.HeadCell>
+          <Table.HeadCell>Deficiency</Table.HeadCell>
           <Table.HeadCell>Action</Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
