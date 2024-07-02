@@ -1,9 +1,11 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 function LogIn() {
     return (
         <div className='w-full h-screen flex flex-row max-[900px]:flex-col items-center justify-center p-5'>
+        <ToastContainer/>
             <div className='w-full flex flex-col items-center'>
                 <img src='/logo.png'/>
                 <div className='mt-5 flex flex-col items-center'>

@@ -12,6 +12,14 @@ import ChangePass from '../pages/Settings/forms/ChangePass'
 import LogIn from '../pages/forms/LogIn'
 import LoginInputs from '../pages/forms/LoginInputs'
 import ForgotPassword from '../pages/forms/ForgotPassword'
+import { authenticate } from './auth'
+import ProtectedRoute from './ProtectedRoutes'
+import LogedIn from './LogedIn'
+import ErrorToast from '../components/toast/ErrorToast'
+import SuccessToast from '../components/toast/SuccessToast'
+import cookie from './cookie'
+import Spinner from '../components/Spinner'
+import fetchUserData from './fetchUserData'
 
 export {
     MainLayout,
@@ -27,5 +35,13 @@ export {
     ChangePass,
     LogIn, 
     LoginInputs,
-    ForgotPassword
+    ForgotPassword,
+    authenticate, 
+    ProtectedRoute, 
+    LogedIn,
+    ErrorToast,
+    SuccessToast,
+    cookie,
+    Spinner,
+    fetchUserData
 }

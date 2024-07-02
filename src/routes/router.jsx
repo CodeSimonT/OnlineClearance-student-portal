@@ -1,10 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
-import { ChangeEmail, ChangePass, ClearanceList, ForgotPassword, HomePage, LogIn, LoginInputs, MainLayout, Setting } from "../hooks/links";
+import { ChangeEmail, ChangePass, ClearanceList, ForgotPassword, HomePage, LogIn, LogedIn, LoginInputs, MainLayout, ProtectedRoute, Setting, authenticate } from "../hooks/links";
 
 export const router = createBrowserRouter([
     {
         path:'/',
-        element:<MainLayout/>,
+        element:(
+            <ProtectedRoute authenticate={authenticate}>
+                <MainLayout/>
+            </ProtectedRoute>
+        ),
         children:[
             {
                 path:'/',
@@ -32,7 +36,11 @@ export const router = createBrowserRouter([
     },
     {
         path:'/form',
-        element:<LogIn/>,
+        element:(
+            <LogedIn authenticate={authenticate}>
+                <LogIn/>
+            </LogedIn>
+        ),
         children:[
             {
                 path:'login',

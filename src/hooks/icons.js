@@ -7,6 +7,10 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoSearchSharp } from "react-icons/io5";
 import { FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { LuUserCircle2 } from "react-icons/lu";
+import { TiInputChecked } from "react-icons/ti";
+import { LiaEditSolid } from "react-icons/lia";
+import { FaBook } from "react-icons/fa";
 
 export {
     MdVerified,
@@ -17,5 +21,9 @@ export {
     RxHamburgerMenu,
     IoSearchSharp,
     FaLock,
-    MdEmail
+    MdEmail,
+    LuUserCircle2,
+    TiInputChecked,
+    LiaEditSolid,
+    FaBook
 }
