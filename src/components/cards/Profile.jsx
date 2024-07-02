@@ -8,7 +8,7 @@ function Profile() {
   const { data,isLoading,isError } = useQuery({
     queryKey:['department'],
     queryFn: fetchUserData
-})
+  })
 
   return (
     <div className='bg-maroon h-24 text-white p-3 flex flex-col items-start justify-end overflow-auto text-wrap break-all'>

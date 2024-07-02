@@ -1,3 +1,4 @@
+import axios from 'axios';
 import MainLayout from '../pages/Layout/MainLayout'
 import HomePage from '../pages/Home/HomePage'
 import SideNav from '../components/nav/SideNav'
@@ -22,6 +23,7 @@ import Spinner from '../components/Spinner'
 import fetchUserData from './fetchUserData'
 
 export {
+    axios,
     MainLayout,
     HomePage,
     SideNav,

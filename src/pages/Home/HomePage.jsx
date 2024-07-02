@@ -1,7 +1,35 @@
-import React from 'react'
-import { ActiveClearanceTable } from '../../hooks/links'
+import React, { useEffect } from 'react'
+import { ActiveClearanceTable, cookie, axios } from '../../hooks/links'
+import { useQuery } from '@tanstack/react-query';
 
 function HomePage() {
+  const {userID,token,getCookie} = cookie();
+
+  const env = import.meta.env;
+  const serverURL = env.VITE_REACT_SERVER_URL;
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey:['activeTerm'],
+    queryFn: async()=>{
+      const { data } = await axios.get(`${serverURL}/osc/api/get/activeterm?userID=${userID}`,{
+        headers:{
+          Authorization:token
+        }
+      })
+      return data;
+    }
+  })
+
+  useEffect(()=>{
+
+    const handleGetCookie = async() =>{
+      await getCookie();
+    }
+    handleGetCookie();
+
+  },[])
+
+  console.log(data)
   return (
     <div>
         <div className="w-full bg-maroon flex items-center justify-between rounded-t-md p-3">
