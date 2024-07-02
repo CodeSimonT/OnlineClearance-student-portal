@@ -2,9 +2,11 @@ import React, { useEffect, useRef } from 'react'
 import { NavLink } from "react-router-dom";
 import { LiaClipboardListSolid, MdPlaylistRemove, IoIosSettings, ImExit } from '../../hooks/icons'
 import Profile from '../cards/Profile';
+import cookie from '../../hooks/cookie';
 
 function SideNav({isShowSideNav, setIsShowSideNav}) {
     const navRef = useRef();
+    const {clearCookie} = cookie()
 
     const handleGetCurrentYear =()=>{
         const date = new Date();
@@ -15,6 +17,11 @@ function SideNav({isShowSideNav, setIsShowSideNav}) {
 
     const handleCloseNav =()=>{
         setIsShowSideNav(false)
+    }
+
+    const handleLogOut = async()=>{
+        await clearCookie();
+        location.reload();
     }
 
     useEffect(()=>{
@@ -77,7 +84,7 @@ function SideNav({isShowSideNav, setIsShowSideNav}) {
                     </span>
                     Settings
                 </NavLink>
-                <button className='inline-flex items-center bg-opacity-50 hover:bg-gray-400 hover:bg-opacity-10 text-sm font-medium px-2.5 py-3 rounded-sm w-full text-gray-500'>
+                <button onClick={handleLogOut} className='inline-flex items-center bg-opacity-50 hover:bg-gray-400 hover:bg-opacity-10 text-sm font-medium px-2.5 py-3 rounded-sm w-full text-gray-500'>
                     <span className='me-5'>
                         <ImExit/>
                     </span>

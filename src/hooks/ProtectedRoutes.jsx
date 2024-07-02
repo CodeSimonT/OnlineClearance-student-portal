@@ -1,12 +1,12 @@
 import React from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom';
 
-const LogedIn = ({ authenticate, children }) => {
+const ProtectedRoute = ({ authenticate, children }) => {
     if (!authenticate()) {
-        return children
+        return <Navigate to="/form/login" replace />
     }
-  
-    return <Navigate to="/" replace />
-}
 
-export default LogedIn
+    return children;
+};
+
+export default ProtectedRoute
