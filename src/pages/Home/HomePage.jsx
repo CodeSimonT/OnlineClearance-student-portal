@@ -45,12 +45,12 @@ function HomePage() {
                 ):(
                   data.status === 'Closed' ?
                   (
-                    <span className="inline-flex items-center bg-red-300 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full w-24">
+                    <span className="inline-flex items-center bg-red-300 text-red-800 text-xs font-medium px-4 py-0.5 rounded-full">
                         <span className="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
                         Closed
                     </span>
                   ):(
-                    <span className="inline-flex items-center bg-orange-300 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded-full w-24">
+                    <span className="inline-flex items-center bg-orange-300 text-orange-800 text-xs font-medium px-4 py-0.5 rounded-full">
                         <span className="w-2 h-2 me-1 bg-orange-500 rounded-full"></span>
                         On-going
                     </span>
@@ -70,6 +70,7 @@ function HomePage() {
                 data = {data}
                 serverURL = {serverURL}
                 token = {token}
+                userID = {userID}
             />
           )
         }

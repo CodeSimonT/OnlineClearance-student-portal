@@ -1,9 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from "flowbite-react";
 import axios from 'axios';
+import { useMutation } from '@tanstack/react-query';
+import ErrorToast from '../toast/ErrorToast';
 
-function ActiveClearanceTable({ data, serverURL, token }) {
+function ActiveClearanceTable({ data, serverURL, token, userID }) {
   const [departments, setDepartments] = useState({});
+
+  const mutation = useMutation({
+    mutationFn:async(clearanceData)=>{
+      const {data} = await axios.post(`${serverURL}/osc/api/post/sendRequestClearance`,clearanceData,{
+        headers:{
+          Authorization:token
+        }
+      })
+
+      return data
+    }
+  })
+
+  const handleSendRequest = async(dept)=>{
+    if(!dept){
+      return ErrorToast('Something wen wrong. Please try again.')
+    }
+
+    mutation.mutate({
+      deptID:dept._id,
+      clearanceID:data._id,
+      userID
+    })
+  }
 
   useEffect(() => {
     const fetchDepartments = async () => {
@@ -28,9 +54,6 @@ function ActiveClearanceTable({ data, serverURL, token }) {
     fetchDepartments();
   }, [data, serverURL, token]);
 
-  const handleSendRequest = async(dept)=>{
-    console.log(dept)
-  }
   return (
     <div className="overflow-x-auto border-2 rounded-b-md">
       <Table>
@@ -54,16 +77,36 @@ function ActiveClearanceTable({ data, serverURL, token }) {
                   {deptData ? deptData.department: 'Loading...'}
                   </Table.Cell>
                   <Table.Cell>
-                    <span className="inline-flex items-center bg-gray-300 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full w-24">
-                      <span className="w-2 h-2 me-1 bg-gray-500 rounded-full"></span>
-                      Unsigned
-                    </span>
+                    {
+                      department.status === '' ?
+                      (
+                        <span className="inline-flex items-center bg-gray-300 text-gray-800 text-xs font-medium px-4 py-0.5 rounded-full">
+                          <span className="w-2 h-2 me-1 bg-gray-500 rounded-full"></span>
+                          Unsigned
+                        </span>
+                      ):(
+                        <span className="inline-flex items-center bg-green-300 text-green-800 text-xs font-medium px-4 py-0.5 rounded-full">
+                          <span className="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                          Signed
+                        </span>
+                      )
+                    }
                   </Table.Cell>
                   <Table.Cell>
-                    <span className="inline-flex items-center bg-gray-300 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full w-28">
-                      <span className="w-2 h-2 me-1 bg-gray-500 rounded-full"></span>
-                      No deficiency
-                    </span>
+                      {
+                        department.deficiency === '' ?
+                        (
+                          <span className="inline-flex items-center bg-gray-300 text-gray-800 text-xs font-medium px-4 py-0.5 rounded-full">
+                            <span className="w-2 h-2 me-1 bg-gray-500 rounded-full"></span>
+                            No deficiency
+                          </span>
+                        ):(
+                          <span className="inline-flex items-center bg-red-300 text-red-800 text-xs font-medium px-4 py-0.5 rounded-full">
+                            <span className="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                            Deficiency
+                          </span>
+                        )
+                      }
                   </Table.Cell>
                   <Table.Cell>
                     <button 
