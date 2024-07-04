@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { ActiveClearanceTable, cookie, axios } from '../../hooks/links'
+import { ActiveClearanceTable, cookie, axios, Spinner } from '../../hooks/links'
 import { useQuery } from '@tanstack/react-query';
 
 function HomePage() {
@@ -38,13 +38,41 @@ function HomePage() {
             <h2 className='text-white text-[12px]'>S/Y 2023-2024 (1st trimester)</h2>
           </div>
           <div className='uppercase flex items-center gap-1 text-white text-[12px] font-medium'>
-              <span className="inline-flex items-center bg-orange-300 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded-full w-24">
-                  <span className="w-2 h-2 me-1 bg-orange-500 rounded-full"></span>
-                  On-going
-              </span>
+              {
+                isLoading ?
+                (
+                  null
+                ):(
+                  data.status === 'Closed' ?
+                  (
+                    <span className="inline-flex items-center bg-red-300 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full w-24">
+                        <span className="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                        Closed
+                    </span>
+                  ):(
+                    <span className="inline-flex items-center bg-orange-300 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded-full w-24">
+                        <span className="w-2 h-2 me-1 bg-orange-500 rounded-full"></span>
+                        On-going
+                    </span>
+                  )
+                )
+              }
           </div>
         </div>
-        <ActiveClearanceTable/>
+        {
+          isLoading ?
+          (
+            <div className='h-32 flex items-center justify-center border-2 border-gray-100 rounded-b-md'>
+              <Spinner/>
+            </div>
+          ):(
+            <ActiveClearanceTable
+                data = {data}
+                serverURL = {serverURL}
+                token = {token}
+            />
+          )
+        }
     </div>
   )
 }
