@@ -3,18 +3,21 @@ import { Table } from "flowbite-react";
 import axios from 'axios';
 import { useMutation } from '@tanstack/react-query';
 import ErrorToast from '../toast/ErrorToast';
+import { ToastContainer } from 'react-toastify';
+import SuccessToast from '../toast/SuccessToast';
 
 function ActiveClearanceTable({ data, serverURL, token, userID }) {
   const [departments, setDepartments] = useState({});
 
   const mutation = useMutation({
     mutationFn:async(clearanceData)=>{
+      console.log('ajghdsfgjsgfd')
       const {data} = await axios.post(`${serverURL}/osc/api/post/sendRequestClearance`,clearanceData,{
         headers:{
           Authorization:token
         }
       })
-
+      console.log(data)
       return data
     }
   })
@@ -54,8 +57,18 @@ function ActiveClearanceTable({ data, serverURL, token, userID }) {
     fetchDepartments();
   }, [data, serverURL, token]);
 
+
+  useEffect(()=>{
+    if(mutation.isError){
+      ErrorToast(mutation.error.response.data.message)
+    }else if(mutation.isSuccess){
+      SuccessToast(mutation.data.message)
+    }
+  },[mutation.isError,mutation.isSuccess])
+
   return (
     <div className="overflow-x-auto border-2 rounded-b-md">
+      <ToastContainer/>
       <Table>
         <Table.Head>
           <Table.HeadCell>Designee</Table.HeadCell>

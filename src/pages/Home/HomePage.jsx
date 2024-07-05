@@ -29,7 +29,7 @@ function HomePage() {
 
   },[])
 
-  console.log(data)
+  // console.log(data)
   return (
     <div>
         <div className="w-full bg-maroon flex items-center justify-between rounded-t-md p-3">
