@@ -21,6 +21,9 @@ import SuccessToast from '../components/toast/SuccessToast'
 import cookie from './cookie'
 import Spinner from '../components/Spinner'
 import fetchUserData from './fetchUserData'
+import DeficiencyModal from '../components/modals/DeficiencyModal';
+import deficiencyModalStore from './Store/deficiencyModalStore';
+
 
 export {
     axios,
@@ -45,5 +48,7 @@ export {
     SuccessToast,
     cookie,
     Spinner,
-    fetchUserData
+    fetchUserData,
+    DeficiencyModal,
+    deficiencyModalStore
 }

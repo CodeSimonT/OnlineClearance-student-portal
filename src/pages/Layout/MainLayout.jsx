@@ -1,12 +1,14 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { SideNav,Navbar } from '../../hooks/links'
+import { SideNav,Navbar, DeficiencyModal } from '../../hooks/links'
 import { useState } from 'react'
 
 function MainLayout() {
   const [isShowSideNav, setIsShowSideNav] = useState(false);
   return (
     <main className='w-full h-screen flex flex-row'>
+        <DeficiencyModal/>
+        
         <SideNav 
           isShowSideNav={isShowSideNav}
           setIsShowSideNav={setIsShowSideNav}

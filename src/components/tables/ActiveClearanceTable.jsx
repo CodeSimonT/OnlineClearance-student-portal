@@ -5,19 +5,19 @@ import { useMutation } from '@tanstack/react-query';
 import ErrorToast from '../toast/ErrorToast';
 import { ToastContainer } from 'react-toastify';
 import SuccessToast from '../toast/SuccessToast';
+import { deficiencyModalStore } from '../../hooks/links';
 
 function ActiveClearanceTable({ data, serverURL, token, userID }) {
   const [departments, setDepartments] = useState({});
+  const {deficiencyModalSetter} = deficiencyModalStore();
 
   const mutation = useMutation({
     mutationFn:async(clearanceData)=>{
-      console.log('ajghdsfgjsgfd')
       const {data} = await axios.post(`${serverURL}/osc/api/post/sendRequestClearance`,clearanceData,{
         headers:{
           Authorization:token
         }
       })
-      console.log(data)
       return data
     }
   })
@@ -38,7 +38,7 @@ function ActiveClearanceTable({ data, serverURL, token, userID }) {
     const fetchDepartments = async () => {
       const departmentData = {};
 
-      await Promise.all(data.requiredDepartments.map(async (department) => {
+      await Promise.all(data?.requiredDepartments?.map(async (department) => {
         try {
           const response = await axios.get(`${serverURL}/osc/api/get/single/departmentData?id=${department.departmentId}`, {
             headers: {
@@ -114,20 +114,27 @@ function ActiveClearanceTable({ data, serverURL, token, userID }) {
                             No deficiency
                           </span>
                         ):(
-                          <span className="inline-flex items-center bg-red-300 text-red-800 text-xs font-medium px-4 py-0.5 rounded-full">
-                            <span className="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
-                            Deficiency
+                          <span onClick={()=>{deficiencyModalSetter(true,data._id,department.departmentName)}} className="cursor-pointer inline-flex items-center bg-red-300 text-red-800 text-xs font-medium px-4 py-0.5 rounded-full">
+                            {department.deficiency}
                           </span>
                         )
                       }
                   </Table.Cell>
                   <Table.Cell>
-                    <button 
-                      className="bg-red-200 text-red-500 px-4 py-2 rounded-sm drop-shadow-md font-medium"
-                      onClick={()=>{handleSendRequest(deptData)}}
-                    >
-                      Send Request
-                    </button>
+                    {
+                      department.status === '' ?
+                        (
+                          <button 
+                            className="bg-red-200 text-red-500 px-4 py-2 rounded-sm drop-shadow-md font-medium"
+                            onClick={()=>{handleSendRequest(deptData)}}
+                          >
+                            Send Request
+                          </button>
+                        ):(
+                          ''
+                        )
+                    }
+                    
                   </Table.Cell>
                 </Table.Row>
               );

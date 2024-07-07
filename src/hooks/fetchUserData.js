@@ -2,11 +2,12 @@ import axios from "axios"
 import Cookies from 'js-cookie';
 
 const fetchUserData = async()=>{
-    const env = import.meta.env;
-    const serverURL = env.VITE_REACT_SERVER_URL;
+    try {
+        const env = import.meta.env;
+        const serverURL = env.VITE_REACT_SERVER_URL;
 
-    const userID = Cookies.get('userID');
-    const token = Cookies.get('token');
+        const userID = Cookies.get('userID');
+        const token = Cookies.get('token');
 
         if(!userID || !token){
             throw new Error;
@@ -19,5 +20,11 @@ const fetchUserData = async()=>{
         })
 
         return data;
+    } catch (error) {
+        Cookies.remove('token');
+        Cookies.remove('userID');
+
+        location.reload()
+    }
 }
 export default fetchUserData

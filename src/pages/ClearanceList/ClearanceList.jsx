@@ -1,12 +1,48 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoSearchSharp } from '../../hooks/icons'
-import { ClearanceListTable } from '../../hooks/links'
+import { axios, ClearanceListTable, cookie, Spinner } from '../../hooks/links'
 import { Pagination } from "flowbite-react";
+import { useQuery } from '@tanstack/react-query';
 
 function ClearanceList() {
+    const {userID,token,getCookie} = cookie();
+
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+
+    const env = import.meta.env;
+    const serverURL = env.VITE_REACT_SERVER_URL;
 
     const onPageChange = (number) => setCurrentPage(number);
+
+    
+    const historyQuery = useQuery({
+        queryKey:['clearanceHistory'],
+        queryFn: async()=>{
+            const {data} = await axios.get(`${serverURL}/osc/api/get/clearanceHistory`,{
+                headers:{
+                    Authorization:token
+                },
+                params:{
+                    id:userID,
+                    page: currentPage,
+                    limit: 10 
+                }
+            })
+
+            setTotalPages(data.totalPages); 
+
+            return data.requests;
+        }
+    })
+
+    useEffect(()=>{
+        const handleGetCookie =async()=>{
+            await getCookie();
+        }
+
+        handleGetCookie();
+    },[])
     return (
         <div>
             <div className="w-full bg-maroon flex flex-col rounded-t-md p-3">
@@ -25,9 +61,31 @@ function ClearanceList() {
                 </div>
             </div>
             <div>
-                <ClearanceListTable/>
+                {
+                    historyQuery.isLoading ?
+                    (
+                        <div className='h-36 w-full flex items-center justify-center border-2 rounded-b-md'>
+                            <Spinner/>
+                        </div>
+                    ):(
+                        historyQuery.data.length > 0 ?
+                        (
+                            <ClearanceListTable
+                                historyQuery = {historyQuery}
+                            />
+                        ):(
+                            <div className='h-36 w-full flex items-center justify-center border-2 rounded-b-md'>
+                                <p className='text-sm text-gray-600 font-medium'>No data</p>
+                            </div>
+                        )
+                    )
+                }
                 <div className="flex overflow-x-auto sm:justify-center">
-                    <Pagination currentPage={currentPage} totalPages={100} onPageChange={onPageChange} />
+                    <Pagination 
+                        currentPage={currentPage} 
+                        totalPages={totalPages} 
+                        onPageChange={onPageChange} 
+                    />
                 </div>
             </div>
         </div>
