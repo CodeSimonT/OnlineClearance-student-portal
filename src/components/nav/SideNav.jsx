@@ -65,7 +65,7 @@ function SideNav({isShowSideNav, setIsShowSideNav}) {
                     Active Clearance
                 </NavLink>
                 <NavLink 
-                    to='/clearance-list'
+                    to='/clearance/list'
                     className={({isActive}) => isActive ? "inline-flex items-center bg-red-200 text-red-500 text-sm font-medium px-2.5 py-3 rounded-sm w-full":"inline-flex items-center hover:bg-gray-400 hover:bg-opacity-10 text-sm font-medium px-2.5 py-3 rounded-sm w-full text-gray-500"}
                     onClick={handleCloseNav}
                 >

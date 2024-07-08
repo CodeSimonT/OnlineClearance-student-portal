@@ -50,5 +50,5 @@ export {
     Spinner,
     fetchUserData,
     DeficiencyModal,
-    deficiencyModalStore
+    deficiencyModalStore,
 }

@@ -5,9 +5,8 @@ import { useNavigate } from 'react-router-dom';
 function ClearanceListTable({historyQuery}) {
     const navigate = useNavigate();
 
-    const handleNavigate = ()=>{
-        console.log('navigate')
-    }
+    const env = import.meta.env;
+    const serverURL = env.VITE_REACT_SERVER_URL;
 
     return (
         <div className="overflow-x-auto border-2 rounded-b-md">
@@ -21,12 +20,12 @@ function ClearanceListTable({historyQuery}) {
                     {
                         historyQuery.data.map((data)=>(
                             <Table.Row 
-                                onClick={handleNavigate} 
+                                onClick={()=>window.open(`${serverURL}/clearance/preview?clearanceID=${data._id}`,'_blank', 'rel=noopener noreferrer')} 
                                 className="cursor-pointer bg-white dark:border-gray-700 dark:bg-gray-800"
                                 key={data._id}
                             >
                                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                    {data._id.slice(-4)}
+                                    {data._id}
                                 </Table.Cell>
                                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                                     {data.term}

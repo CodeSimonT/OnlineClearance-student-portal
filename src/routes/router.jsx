@@ -1,5 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
-import { ChangeEmail, ChangePass, ClearanceList, ForgotPassword, HomePage, LogIn, LogedIn, LoginInputs, MainLayout, ProtectedRoute, Setting, authenticate } from "../hooks/links";
+import { ChangeEmail, 
+        ChangePass, 
+        ClearanceList, 
+        ForgotPassword, 
+        HomePage, 
+        LogIn, 
+        LogedIn, 
+        LoginInputs, 
+        MainLayout, 
+        ProtectedRoute, 
+        Setting, 
+        authenticate, 
+        } from "../hooks/links";
 
 export const router = createBrowserRouter([
     {
@@ -15,8 +27,8 @@ export const router = createBrowserRouter([
                 element:<HomePage/>
             },
             {
-                path:'clearance-list',
-                element:<ClearanceList/>
+                path:'clearance/list',
+                element:<ClearanceList/>,
             },
             {
                 path:'settings',
