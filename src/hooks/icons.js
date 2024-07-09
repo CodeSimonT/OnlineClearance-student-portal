@@ -11,6 +11,7 @@ import { LuUserCircle2 } from "react-icons/lu";
 import { TiInputChecked } from "react-icons/ti";
 import { LiaEditSolid } from "react-icons/lia";
 import { FaBook } from "react-icons/fa";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 export {
     MdVerified,
@@ -25,5 +26,6 @@ export {
     LuUserCircle2,
     TiInputChecked,
     LiaEditSolid,
-    FaBook
+    FaBook,
+    FaArrowLeftLong
 }
